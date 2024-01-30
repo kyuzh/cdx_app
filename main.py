@@ -290,7 +290,10 @@ def web_scrap_monreseau(path, file_name, page_start, page_end):
             driver.quit()
 
             # 获取公司类型数据
-            type = str(soup.find("div", class_="span9").h2)[4:-5]
+            if soup.find("div", class_="span9") is None:
+                type = ""
+            else:
+                type = str(soup.find("div", class_="span9").h2)[4:-5]
             # 获取关键数字数据
             chiffre_cle = soup.find("table", class_="table table-bordered")
             if "<td>" in str(chiffre_cle):
